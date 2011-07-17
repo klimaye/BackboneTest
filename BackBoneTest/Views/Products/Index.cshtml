@@ -4,9 +4,11 @@
 <script type="text/javascript" src="@Url.Content("~/Scripts/Site/Products/Index.js")">
 </script>
 <script type="text/javascript">
+    /*
     $(function () {
         App.init();
     });
+    */
 </script>
 <h2>Index</h2>
 <div>
@@ -14,17 +16,10 @@
 </div>
 <table id ="products-table">
 </table>
-<div id="new-product-form-dialog" style="display:none;">
-<ul>
-    <li>
-        <label for="name">Name :</label>
-        <input type="text" id="name" />
-    </li>
-</ul>s
-</div>
+<!-- <a class="edit" href="#products/{{= id }}">{{= Name }}</a> -->
 <script id="product-item-template" type="text/x-jquery-tmpl">
     <td>
-        <a class="edit" href="#products/{{= id }}">{{= Name }}</a>
+        <span>{{= Name }}</span>
     </td>
     <td>
         <span>{{= Description}}</span>
@@ -36,3 +31,11 @@
         <button class="delete">Delete</button>
     </>
 </script>
+<div id="new-product-form-dialog" style="display:none;">
+<ul>
+    <li>
+        <label for="name">Name :</label>
+        <input type="text" id="name" />
+    </li>
+</ul>
+</div>

@@ -101,6 +101,7 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\Backbone\backbone-min.js" />
+    <Content Include="Scripts\Backbone\backbone_base_view.js" />
     <Content Include="Scripts\Backbone\underscore-min.js" />
     <Content Include="Scripts\jquery-1.5.1-vsdoc.js" />
     <Content Include="Scripts\jquery-1.5.1.js" />
