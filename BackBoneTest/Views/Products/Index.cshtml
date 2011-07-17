@@ -1,0 +1,38 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+<script type="text/javascript" src="@Url.Content("~/Scripts/Site/Products/Index.js")">
+</script>
+<script type="text/javascript">
+    $(function () {
+        App.init();
+    });
+</script>
+<h2>Index</h2>
+<div>
+    <input type="button" id="new-product-button" value="Add Product" />
+</div>
+<table id ="products-table">
+</table>
+<div id="new-product-form-dialog" style="display:none;">
+<ul>
+    <li>
+        <label for="name">Name :</label>
+        <input type="text" id="name" />
+    </li>
+</ul>s
+</div>
+<script id="product-item-template" type="text/x-jquery-tmpl">
+    <td>
+        <a class="edit" href="#products/{{= id }}">{{= Name }}</a>
+    </td>
+    <td>
+        <span>{{= Description}}</span>
+    </td>
+    <td>
+        <span>{{= Price }}</span>
+    </td>
+    <td>
+        <button class="delete">Delete</button>
+    </>
+</script>
