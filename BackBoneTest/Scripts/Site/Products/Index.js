@@ -59,46 +59,46 @@ $(function () {
     */
     /*
     var ProductListView = Backbone.View.extend({
-        events: {
-            "click #new-product-button": "add"
-        },
-        initialize: function () {
-            _.bindAll(this, "render", "add");
-            this.collection.bind("all", this.render);
-        },
+    events: {
+    "click #new-product-button": "add"
+    },
+    initialize: function () {
+    _.bindAll(this, "render", "add");
+    this.collection.bind("all", this.render);
+    },
 
-        render: function () {
-            var table = $("#products-table");
-            table.empty();
-            this.collection.each(function (product) {
-                var productEntry = new ProductEntry({ model: product });
-                table.append(productEntry.render().el);
-            });
-            return this;
-        },
+    render: function () {
+    var table = $("#products-table");
+    table.empty();
+    this.collection.each(function (product) {
+    var productEntry = new ProductEntry({ model: product });
+    table.append(productEntry.render().el);
+    });
+    return this;
+    },
 
-        add: function () {
-            $("#new-product-form-dialog").dialog("open");
-        }
+    add: function () {
+    $("#new-product-form-dialog").dialog("open");
+    }
     });
 
     var ProductEntry = Backbone.View.extend({
-        tagName: "tr",
-        events: {
-            "click .delete": "deleteProduct"
-        },
-        initialize: function () {
-            _.bindAll(this, "render", "edit");
-        },
-        render: function () {
-            $(this.el).append($("#product-item-template").tmpl(this.model.toJSON()));
-            return this;
-        },
-        deleteProduct: function () {
-            forms.confirmDialog("Are you sure you want to delete this Product? This cannot be undone.", function () {
-                this.model.destroy();
-            });
-        }
+    tagName: "tr",
+    events: {
+    "click .delete": "deleteProduct"
+    },
+    initialize: function () {
+    _.bindAll(this, "render", "edit");
+    },
+    render: function () {
+    $(this.el).append($("#product-item-template").tmpl(this.model.toJSON()));
+    return this;
+    },
+    deleteProduct: function () {
+    forms.confirmDialog("Are you sure you want to delete this Product? This cannot be undone.", function () {
+    this.model.destroy();
+    });
+    }
     });
     */
     window.ProductsView = Backbone.View.extend({
@@ -132,19 +132,44 @@ $(function () {
         }
     });
 
-   window.ProductView = Backbone.View.extend({
+    window.ProductView = Backbone.View.extend({
         tagName: 'tr',
-
+        events: {
+            "click .delete": "deleteProduct"
+        },
         initialize: function () {
             this.model.view = this;
             //_.bindAll(this, "AddField", "refresh");
             this.render();
         },
         render: function () {
-            //$(this.el).html(this.template(this.model));
             $(this.el).append($("#product-item-template").tmpl(this.model.toJSON()));
-            return this;       
+            return this;
+        },
+        deleteProduct: function () {
+            $("#dialog:ui-dialog").dialog("destroy");
+
+            $("#dialog-confirm").dialog({
+                resizable: false,
+                height: 140,
+                modal: true,
+                buttons: {
+                    "Delete Product": function () {
+                        this.model.destroy();
+                        $(this).dialog("close");
+                    },
+                    Cancel: function () {
+                        $(this).dialog("close");
+                    }
+                }
+            });
+            /*
+            forms.confirmDialog("Are you sure you want to delete this Product? This cannot be undone.", function () {
+                this.model.destroy();
+            });
+            */
         }
     });
+
     new ProductsView();
 });
