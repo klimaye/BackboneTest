@@ -147,15 +147,17 @@ $(function () {
             return this;
         },
         deleteProduct: function () {
+            domainObject = this.model;
             $("#dialog:ui-dialog").dialog("destroy");
 
             $("#dialog-confirm").dialog({
                 resizable: false,
                 height: 140,
                 modal: true,
+                domainObject: domainObject,
                 buttons: {
                     "Delete Product": function () {
-                        this.model.destroy();
+                        domainObject.destroy();
                         $(this).dialog("close");
                     },
                     Cancel: function () {
@@ -165,7 +167,7 @@ $(function () {
             });
             /*
             forms.confirmDialog("Are you sure you want to delete this Product? This cannot be undone.", function () {
-                this.model.destroy();
+            this.model.destroy();
             });
             */
         }
